@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+//      SwiftDataView()
       BirdWNListView()
-      //test voor repo
     }
 }
 
-
+// let keyExists = UserDefaults.standard.object(forKey: cacheKey) != nil
 
 #Preview {
     ContentView()

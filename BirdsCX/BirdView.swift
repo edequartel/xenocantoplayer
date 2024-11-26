@@ -13,34 +13,49 @@ struct BirdDetailView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       // Bird Name
-      Text(nativeName ?? "")
-        .font(.headline)
+      let combinedString = [
+          nativeName ?? "",
+          bird.gen ?? "",
+          bird.sp ?? "",
+          bird.date ?? "",
+          bird.time ?? "",
+          bird.rec ?? "",
+          bird.loc ?? ""
+      ].joined(separator: ",")
 
-      Text(bird.en ?? "No bird name")
+      VStack {
+        Text(nativeName ?? "")
+          .font(.headline)
 
-      HStack {
-        Text(bird.gen ?? "")
-        Text(bird.sp ?? "")
-        Spacer()
+        Text(bird.en ?? "No bird name")
+
+        HStack {
+          Text(bird.gen ?? "")
+          Text(bird.sp ?? "")
+          Spacer()
+        }
+        .italic()
+
+        Text(bird.rec ?? "")
+
+        Text(bird.loc ?? "")
+
+        HStack {
+          Text(bird.date ?? "")
+          Text(bird.time ?? "")
+          Spacer()
+        }
+        .font(.caption)
       }
-      .italic()
-
-      Text(bird.rec ?? "")
-
-      Text(bird.loc ?? "")
-
-      HStack {
-        Text(bird.date ?? "")
-        Text(bird.time ?? "")
-        Spacer()
-      }
-      .font(.caption)
+      .accessibilityElement(children: .combine)
+      .accessibilityLabel(combinedString)
 
       // Small Sono Image
       if let smallSono = bird.sono?.small, let sonoURL = URL(string: "https:" + smallSono) {
         KFImage(sonoURL)
           .resizable()
           .scaledToFit()
+          .accessibilityHidden(true)
       }
 
       // Small Osci Image (First Instance)
@@ -48,6 +63,7 @@ struct BirdDetailView: View {
         KFImage(osciURL1)
           .resizable()
           .scaledToFit()
+          .accessibilityHidden(true)
       }
 
       if isMP3(filename: bird.fileName ?? "no streaming format") {
@@ -66,7 +82,7 @@ struct BirdDetailView: View {
           Markdown() {
             bird.rmk ?? "No remark"
           }
-          //        .frame()
+          .frame(maxWidth: .infinity, minHeight: 30)
           .multilineTextAlignment(.leading) // For multiline content
           .padding(4)
           //        .border(Color.gray, width: 1)

@@ -11,9 +11,8 @@ import SwiftData
 
 struct BirdWNListView: View {
   @StateObject private var viewModel = BirdWNViewModel()
-
-  @Query private var numberLists: [NumberList]
-  @Environment(\.modelContext) private var modelContext // Injected model context
+  @Environment(\.modelContext) var modelContext
+  @Query var speciesList : [Species]
 
   @State private var searchText = "" // State to store search query
   @State private var isSortedAscending = true // State to track sort order
@@ -21,91 +20,112 @@ struct BirdWNListView: View {
 
 
   var groupedBirds: [String: [BirdWN]] {
-      Dictionary(grouping: sortedBirds) { bird in
-          String(bird.name.prefix(1)).uppercased() // Group by first letter of name
-      }
+    Dictionary(grouping: sortedBirds) { bird in
+      String(bird.name.prefix(1)).uppercased() // Group by first letter of name
+    }
   }
 
 
   var filteredBirds: [BirdWN] {
-      viewModel.birds.filter { bird in
-          let matchesSearchText = searchText.isEmpty ||
-              bird.name.localizedCaseInsensitiveContains(searchText) ||
-              bird.scientificName.localizedCaseInsensitiveContains(searchText)
-//        let matchesRarity = (bird.rarity == selectedRarity.rawValue) || (selectedRarity == .all)
-          return matchesSearchText// && matchesRarity
-      }
+    viewModel.birds.filter { bird in
+      let matchesSearchText = searchText.isEmpty ||
+      bird.name.localizedCaseInsensitiveContains(searchText) ||
+      bird.scientificName.localizedCaseInsensitiveContains(searchText)
+      //        let matchesRarity = (bird.rarity == selectedRarity.rawValue) || (selectedRarity == .all)
+      let speciesFavorite = true //checkSpeciesNumber(bird.species)
+      return matchesSearchText && speciesFavorite // && matchesRarity
+    }
   }
 
 
   var sortedBirds: [BirdWN] {
-      filteredBirds.sorted {
-          isSortedAscending
-              ? $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
-              : $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedDescending
-      }
+    filteredBirds.sorted {
+      isSortedAscending
+      ? $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+      : $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedDescending
+    }
   }
 
   var body: some View {
-      NavigationStack {
-          VStack {
-              List {
-                  // Group sorted birds by the first letter of their names
-                  ForEach(groupedBirds.keys.sorted(), id: \.self) { letter in
-                      Section(header: Text(letter)) {
-                        ForEach(groupedBirds[letter] ?? [], id: \.id) { bird in
-                          HStack {
-                            NavigationLink(destination: BirdListView(scientificName: bird.scientificName, nativeName: bird.name)) {
-                              HStack {
-                                VStack(alignment: .leading) {
-                                  Text("\(bird.name)")
-                                    .font(.headline)
-                                  Text(bird.scientificName)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .italic()
-                                }
-                                Spacer()
-                              }
-                            }
-                          }
-                          .swipeActions(edge: .trailing, allowsFullSwipe: false ) {
-                            Button(action: {
-                              print("Add")
-                              print("Delete \(bird.species)")
-//                              addNumber(bird.species) dit gaat niet goed
-                            }) {
-                              Image(systemName: "plus.circle")
-                            }
-                            .tint(.green)
-                            Button(action: {
-                              print("Delete \(bird.species)")
-                            }) {
-                              Image(systemName: "minus.circle")
-                            }
-                            .tint(.red)
-                          }
+    NavigationStack {
+      VStack {
+        List {
+          // Group sorted birds by the first letter of their names
+          ForEach(groupedBirds.keys.sorted(), id: \.self) { letter in
+            Section(header: Text(letter)) {
+              ForEach(groupedBirds[letter] ?? [], id: \.id) { bird in
+                HStack {
+                  NavigationLink(destination: BirdListView(scientificName: bird.scientificName, nativeName: bird.name)) {
+                    HStack {
+                      VStack(alignment: .leading) {
+                        HStack {
+                          Text("\(bird.name)")
+                            .font(.headline)
+                          Spacer()
+                          Text(checkSpeciesNumber(bird.species) ? "X" : "O")
                         }
+                        Text(bird.scientificName)
+                          .font(.subheadline)
+                          .foregroundColor(.gray)
+                          .italic()
+
                       }
+                      Spacer()
+                    }
                   }
+                }
+                .swipeActions(edge: .trailing, allowsFullSwipe: false ) {
+                  Button(action: {
+                    addSpeciesNumber(bird.species)
+                    //                              deleteSpeciesNumber(bird.species)
+                  }) {
+                    Image(systemName: "plus.circle")
+                  }
+                  .tint(.green)
+                  Button(action: {
+                    deleteSpeciesByNumber(bird.species)
+                    printSpecies()
+                  }) {
+                    Image(systemName: "minus.circle")
+                  }
+                  .tint(.red)
+                }
               }
-              .navigationTitle("Vogels")
-              .navigationBarTitleDisplayMode(.inline)
-              .searchable(text: $searchText, prompt: "Zoek naar vogels")
+            }
           }
+        }
+        .navigationTitle("Vogels")
+        .navigationBarTitleDisplayMode(.inline)
+        .searchable(text: $searchText, prompt: "Zoek naar vogels")
       }
+    }
   }
 
 
-  // Add a new number to the list
-//  private func addNumber(value: Int) {
-//    print("add number \(value)")
-//  }
-//
-//  func deleteNumber(value: Int) {
-//    print("delete number \(value)")
-//  }
+  func addSpeciesNumber(_ value: Int) {
+    if !speciesList.contains(where: { $0.number == value }) {
+      let species = Species(number: value)
+      modelContext.insert(species)
+      print("Inserted species with number \(value)")
+    }
+  }
 
+  func deleteSpeciesByNumber(_ number: Int) {
+    if let species = speciesList.first(where: { $0.number == number }) {
+      modelContext.delete(species)
+      print("delete byNumber \(species)")
+    }
+  }
+
+  func checkSpeciesNumber(_ value: Int) -> Bool {
+    return speciesList.contains(where: { $0.number == value })
+  }
+
+  func printSpecies() {
+    for species in speciesList {
+      print(species.number)
+    }
+  }
 
 }
 

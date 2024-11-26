@@ -16,7 +16,7 @@ struct XCApp: App {
         WindowGroup {
             ContentView()
             .environmentObject(player)
-            .modelContainer(for: [NumberList.self]) // Attach the SwiftData container
         }
+        .modelContainer(for: Species.self)
     }
 }
