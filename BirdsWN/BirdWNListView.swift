@@ -86,7 +86,7 @@ struct BirdWNListView: View {
 
           ToolbarItem(placement: .navigationBarTrailing) {
             Button(action: {
-              openWebsite(urlString: "https://www.bartimeus.nl")
+              openWebsite(urlString: "https://edequartel.github.io/xenocantoplayer/")
             }) {
               Image(systemName: "gearshape")
             }
