@@ -26,8 +26,6 @@ struct BirdWNDetailView: View {
           .font(.subheadline)
           .foregroundColor(.gray)
           .italic()
-
-//        if bird.checked { Image("star.fill") }
       }
       Spacer()
     }

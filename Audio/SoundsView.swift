@@ -41,7 +41,6 @@ struct PlayerControlsView: View {
           Slider(value: $player.currentTime, in: 0...endOf)
             .disabled(true)
 
-          // Gauge<<#Label: View#>, EmptyView, EmptyView, EmptyView>(value: $player.currentTime) //, in: 0...endOf)
 
           HStack {
             Text(String(format: "%.2f", player.currentTime))
@@ -53,6 +52,7 @@ struct PlayerControlsView: View {
           }
           .font(.caption)
           .foregroundColor(.gray)
+          .accessibilityLabel("position \(player.currentTime) of length \(length)")
 
         }
 

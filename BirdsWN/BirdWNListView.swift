@@ -75,13 +75,23 @@ struct BirdWNListView: View {
           }
         }
         .toolbar {
-          Button(action: {
+          ToolbarItem(placement: .navigationBarLeading) {
+            Button(action: {
               showFavorite.toggle()
               print("Favorite toggled: \(showFavorite)")
-          }) {
+            }) {
               Image(systemName: showFavorite ? "star.fill" : "star")
+            }
           }
 
+          ToolbarItem(placement: .navigationBarTrailing) {
+            Button(action: {
+              openWebsite(urlString: "https://www.bartimeus.nl")
+            }) {
+              Image(systemName: "gearshape")
+            }
+            .accessibilityHint("Open website XC")
+          }
         }
         .navigationTitle("Vogels")
         .navigationBarTitleDisplayMode(.inline)
@@ -91,3 +101,10 @@ struct BirdWNListView: View {
   }
 }
 
+private func openWebsite(urlString: String) {
+  if let url = URL(string: urlString) {
+    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+  } else {
+    print("Invalid URL")
+  }
+}

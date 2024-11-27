@@ -17,8 +17,9 @@ struct BirdDetailView: View {
           nativeName ?? "",
           bird.gen ?? "",
           bird.sp ?? "",
-          bird.date ?? "",
-          bird.time ?? "",
+          convertToDutchDateAccessible(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "",
+//          bird.date ?? "",
+//          bird.time ?? "",
           bird.rec ?? "",
           bird.loc ?? ""
       ].joined(separator: ",")
@@ -40,11 +41,8 @@ struct BirdDetailView: View {
 
         Text(bird.loc ?? "")
 
-        HStack {
-          Text(bird.date ?? "")
-          Text(bird.time ?? "")
-          Spacer()
-        }
+
+        Text(convertToDutchDate(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "")
         .font(.caption)
       }
       .accessibilityElement(children: .combine)
@@ -114,4 +112,58 @@ struct BirdDetailView: View {
     }
     return false
   }
+}
+
+func convertToDutchDateAccessible(dateString: String, timeString: String) -> String? {
+  let dateFormatter = DateFormatter()
+  dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+  dateFormatter.locale = Locale(identifier: "nl_NL") // Set Dutch locale
+
+  // Combine date and time into a single string
+  let combinedDateTime = "\(dateString) \(timeString)"
+
+  // Convert to a Date object
+  guard let date = dateFormatter.date(from: combinedDateTime) else {
+    return nil // Return nil if parsing fails
+  }
+
+  // Create another DateFormatter for output
+  let outputFormatter = DateFormatter()
+  outputFormatter.locale = Locale(identifier: "nl_NL")
+  outputFormatter.dateFormat = "EEEE d MMMM yyyy 'om' H 'uur' m" // Dutch format
+
+  //    return outputFormatter.string(from: date).capitalized // Capitalize the first letter
+
+  // Get the formatted string
+  let formattedString = outputFormatter.string(from: date)
+
+  // Capitalize only the first character
+  return formattedString.prefix(1).uppercased() + formattedString.dropFirst()
+}
+
+func convertToDutchDate(dateString: String, timeString: String) -> String? {
+  let dateFormatter = DateFormatter()
+  dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+  dateFormatter.locale = Locale(identifier: "nl_NL") // Set Dutch locale
+
+  // Combine date and time into a single string
+  let combinedDateTime = "\(dateString) \(timeString)"
+
+  // Convert to a Date object
+  guard let date = dateFormatter.date(from: combinedDateTime) else {
+    return nil // Return nil if parsing fails
+  }
+
+  // Create another DateFormatter for output
+  let outputFormatter = DateFormatter()
+  outputFormatter.locale = Locale(identifier: "nl_NL")
+  outputFormatter.dateFormat = "EEEE d MMMM yyyy HH:mm" // Dutch format
+
+  //    return outputFormatter.string(from: date).capitalized // Capitalize the first letter
+
+  // Get the formatted string
+  let formattedString = outputFormatter.string(from: date)
+
+  // Capitalize only the first character
+  return formattedString.prefix(1).uppercased() + formattedString.dropFirst()
 }
