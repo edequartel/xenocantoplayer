@@ -23,7 +23,7 @@ struct BirdDetailView: View {
           bird.loc ?? ""
       ].joined(separator: ",")
 
-      VStack {
+      VStack(alignment: .leading, spacing: 10) {
         Text(nativeName ?? "")
           .font(.headline)
 
@@ -50,7 +50,7 @@ struct BirdDetailView: View {
       .accessibilityElement(children: .combine)
       .accessibilityLabel(combinedString)
 
-      // Small Sono Image
+      // Large Sono Image
       if let smallSono = bird.sono?.small, let sonoURL = URL(string: "https:" + smallSono) {
         KFImage(sonoURL)
           .resizable()
@@ -58,7 +58,6 @@ struct BirdDetailView: View {
           .accessibilityHidden(true)
       }
 
-      // Small Osci Image (First Instance)
       if let smallOsci = bird.osci?.small, let osciURL1 = URL(string: "https:" + smallOsci) {
         KFImage(osciURL1)
           .resizable()
@@ -66,12 +65,22 @@ struct BirdDetailView: View {
           .accessibilityHidden(true)
       }
 
+
+      // Full Sono Image
+//      if let smallSono = bird.sono?.full, let sonoURL = URL(string: "https:" + smallSono) {
+//        KFImage(sonoURL)
+//          .resizable()
+//          .scaledToFit()
+//          .accessibilityHidden(true)
+//      }
+
+
       if isMP3(filename: bird.fileName ?? "no streaming format") {
         PlayerControlsView(sounds: [bird.file ?? ""], length: bird.length ?? "01:00")
-//          .border(Color.gray, width: 1)
+//          .border(Color.blue, width: 1)
 //          .background(
 //              RoundedRectangle(cornerRadius: 8)
-//                  .stroke(Color.gray, lineWidth: 1)
+//                  .stroke(Color.blue, lineWidth: 1)
 //          )
       } else {
         Text("audio is not streamable")
@@ -84,7 +93,7 @@ struct BirdDetailView: View {
           }
           .frame(maxWidth: .infinity, minHeight: 30)
           .multilineTextAlignment(.leading) // For multiline content
-          .padding(4)
+          .padding(8)
           //        .border(Color.gray, width: 1)
           .background(
             RoundedRectangle(cornerRadius: 8)

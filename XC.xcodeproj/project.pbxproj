@@ -41,9 +41,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		47769F0A2CF604D100E6AA0F /* SwiftData */ = {
+		47769F0A2CF604D100E6AA0F /* BookMark iCloudStorage */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SwiftData;
+			path = "BookMark iCloudStorage";
 			sourceTree = "<group>";
 		};
 		47911B442CF44F51006DEB07 /* XC */ = {
@@ -81,6 +81,11 @@
 			path = Lists;
 			sourceTree = "<group>";
 		};
+		47B3B4572CF70C3800F95E76 /* Bookmark */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Bookmark;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,12 +120,13 @@
 		47911B392CF44F51006DEB07 = {
 			isa = PBXGroup;
 			children = (
+				47B3B4572CF70C3800F95E76 /* Bookmark */,
 				47A862482CF4A2E90016BB04 /* XCApp.swift */,
 				47A862472CF4A2E90016BB04 /* ContentView.swift */,
 				47A8626F2CF5C0830016BB04 /* Audio */,
 				47A862652CF59B2A0016BB04 /* BirdsWN */,
 				47A862622CF5995E0016BB04 /* BirdsCX */,
-				47769F0A2CF604D100E6AA0F /* SwiftData */,
+				47769F0A2CF604D100E6AA0F /* BookMark iCloudStorage */,
 				47A8627E2CF5E7A80016BB04 /* Lists */,
 				47911B442CF44F51006DEB07 /* XC */,
 				47911B552CF44F52006DEB07 /* XCTests */,
@@ -163,12 +169,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				47769F0A2CF604D100E6AA0F /* SwiftData */,
+				47769F0A2CF604D100E6AA0F /* BookMark iCloudStorage */,
 				47911B442CF44F51006DEB07 /* XC */,
 				47A862622CF5995E0016BB04 /* BirdsCX */,
 				47A862652CF59B2A0016BB04 /* BirdsWN */,
 				47A8626F2CF5C0830016BB04 /* Audio */,
 				47A8627E2CF5E7A80016BB04 /* Lists */,
+				47B3B4572CF70C3800F95E76 /* Bookmark */,
 			);
 			name = XC;
 			packageProductDependencies = (
@@ -465,12 +472,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = XC;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -499,12 +508,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = XC;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

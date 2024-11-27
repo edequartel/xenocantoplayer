@@ -9,31 +9,29 @@
 import SwiftUI
 
 struct BirdWNDetailView: View {
-    let bird: BirdWN
+  @EnvironmentObject private var bookMarksViewModel: BookMarksViewModel
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text(bird.name)
-                .font(.largeTitle)
-                .fontWeight(.bold)
+  let bird: BirdWN
 
-            Text("\(bird.scientificName)")
-            .italic()
-
-                .font(.title2)
-
-//            Text("Rarity: \(bird.rarity)")
-//                .font(.body)
-//
-//            Text("Native: \(bird.native ? "Yes" : "No")")
-//                .font(.body)
-
-            Spacer()
+  var body: some View {
+    HStack {
+      VStack(alignment: .leading) {
+        HStack {
+          Text("\(bird.name)")
+            .font(.headline)
+          Spacer()
+          Image(systemName: bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) ? "star.fill" : "")
         }
-        .padding()
-        .navigationTitle(bird.name)
-        .navigationBarTitleDisplayMode(.inline)
+        Text(bird.scientificName)
+          .font(.subheadline)
+          .foregroundColor(.gray)
+          .italic()
+
+//        if bird.checked { Image("star.fill") }
+      }
+      Spacer()
     }
+  }
 }
 
 

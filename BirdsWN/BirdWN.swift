@@ -23,6 +23,8 @@ struct BirdWN: Codable, Identifiable {
     let sortOrderRank: Int
     let sortOrderTaxonomy: Int
 
+//    let checked: Bool = false you can fill this when you update for staring
+
     enum CodingKeys: String, CodingKey {
         case species, group, name
         case scientificName = "scientific_name"

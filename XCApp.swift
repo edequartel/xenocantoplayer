@@ -10,13 +10,14 @@ import SwiftUI
 @main
 struct XCApp: App {
   @StateObject var player = Player()
+  @StateObject var bookMarksViewModel = BookMarksViewModel()
 
 
     var body: some Scene {
         WindowGroup {
             ContentView()
             .environmentObject(player)
+            .environmentObject(bookMarksViewModel)
         }
-        .modelContainer(for: Species.self)
     }
 }
