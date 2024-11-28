@@ -10,7 +10,7 @@ Deze app is ontworpen om het verkennen van de natuur nog leuker te maken. Als je
 ## TestFlight
 Gebruik de link [XC TestFlight](https://testflight.apple.com/join/QXHpHe6b) of scan de QR-code en je kunt de app testen via TestFlight op je iPhone. Je krijgt dan instructies over hoe je de app moet installeren.
 
-![QR-code](./images/QRcode.JPG)
+![QR-code](./images/QRcode.png)
 
 * [Wikipedia - Xeno-Canto](https://en.wikipedia.org/wiki/Xeno-canto)
 
