@@ -85,19 +85,20 @@ struct BirdDetailView: View {
       }
 
       if !(bird.rmk?.isEmpty ?? true) {
-        ScrollView {
-          Markdown() {
-            bird.rmk ?? "No remark"
-          }
-          .frame(maxWidth: .infinity, minHeight: 30)
-          .multilineTextAlignment(.leading) // For multiline content
-          .padding(8)
-          //        .border(Color.gray, width: 1)
-          .background(
-            RoundedRectangle(cornerRadius: 8)
-              .stroke(Color.gray, lineWidth: 1)
-          )
-        }
+        Markdown(bird.rmk ?? "No remark")
+            .frame(maxWidth: .infinity, minHeight: 30) // Ensure the Markdown view itself doesn’t scroll
+            .multilineTextAlignment(.leading)         // Align text to the leading edge
+            .padding(8)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.gray, lineWidth: 1)
+            )
+            .overlay( // Make the content scrollable inside the Markdown view
+                ScrollView {
+                    Text(bird.rmk ?? "No remark") // Display content as scrollable
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            )
       }
 
       Spacer()

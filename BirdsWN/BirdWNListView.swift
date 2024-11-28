@@ -84,14 +84,13 @@ struct BirdWNListView: View {
             }
           }
 
-//          ToolbarItem(placement: .navigationBarTrailing) {
-//            Button(action: {
-//              openWebsite(urlString: "https://edequartel.github.io/xenocantoplayer/")
-//            }) {
-//              Image(systemName: "gearshape")
-//            }
-//            .accessibilityHint("Open website XC")
-//          }
+          ToolbarItem(placement: .navigationBarTrailing) {
+            NavigationLink(destination:  SettingsView()) {
+              Image(systemName: "gearshape")
+            }
+            .accessibilityHint("Open website XC")
+          }
+
         }
         .navigationTitle("Vogels")
         .navigationBarTitleDisplayMode(.inline)
@@ -101,10 +100,3 @@ struct BirdWNListView: View {
   }
 }
 
-private func openWebsite(urlString: String) {
-  if let url = URL(string: urlString) {
-    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-  } else {
-    print("Invalid URL")
-  }
-}

@@ -11,6 +11,7 @@ import SwiftUI
 struct XCApp: App {
   @StateObject var player = Player()
   @StateObject var bookMarksViewModel = BookMarksViewModel()
+//  @StateObject private var accessibilityManager = AccessibilityManager()
 
 
     var body: some Scene {
