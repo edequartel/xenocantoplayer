@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		471F7A902CF8540700BF529C /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 471F7A8F2CF853FF00BF529C /* todo.txt */; };
 		47911B722CF44FBD006DEB07 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 47911B712CF44FBD006DEB07 /* Alamofire */; };
 		47911B7F2CF45AA6006DEB07 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 47911B7E2CF45AA6006DEB07 /* Kingfisher */; };
 		47A8624D2CF4A2E90016BB04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A862472CF4A2E90016BB04 /* ContentView.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		471F7A8F2CF853FF00BF529C /* todo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		47911B422CF44F51006DEB07 /* XC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47911B522CF44F52006DEB07 /* XCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47911B5C2CF44F52006DEB07 /* XCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 		47911B392CF44F51006DEB07 = {
 			isa = PBXGroup;
 			children = (
+				471F7A8F2CF853FF00BF529C /* todo.txt */,
 				47B3B4572CF70C3800F95E76 /* Bookmark */,
 				47A862482CF4A2E90016BB04 /* XCApp.swift */,
 				47A862472CF4A2E90016BB04 /* ContentView.swift */,
@@ -289,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				471F7A902CF8540700BF529C /* todo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +478,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;
@@ -486,6 +490,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -510,7 +515,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;
@@ -522,6 +527,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -84,14 +84,14 @@ struct BirdWNListView: View {
             }
           }
 
-          ToolbarItem(placement: .navigationBarTrailing) {
-            Button(action: {
-              openWebsite(urlString: "https://edequartel.github.io/xenocantoplayer/")
-            }) {
-              Image(systemName: "gearshape")
-            }
-            .accessibilityHint("Open website XC")
-          }
+//          ToolbarItem(placement: .navigationBarTrailing) {
+//            Button(action: {
+//              openWebsite(urlString: "https://edequartel.github.io/xenocantoplayer/")
+//            }) {
+//              Image(systemName: "gearshape")
+//            }
+//            .accessibilityHint("Open website XC")
+//          }
         }
         .navigationTitle("Vogels")
         .navigationBarTitleDisplayMode(.inline)
