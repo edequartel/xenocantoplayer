@@ -8,6 +8,8 @@ import AVFoundation
 // MARK: - View
 struct BirdListView: View {
   @StateObject private var viewModel = BirdViewModel()
+  @EnvironmentObject private var cacheMarksViewModel: BookMarksViewModel
+
   let scientificName: String
   var nativeName: String?
 
@@ -35,9 +37,11 @@ struct BirdListView: View {
     .onAppear {
       if !viewModel.hasFetchedBirds {
         viewModel.fetchBirds(name: scientificName, clearCache: false)
+        cacheMarksViewModel.appendRecord(speciesID: stringToIntHash(scientificName.lowercased()))
       }
     }
   }
+
 
 
   func isMP3(filename: String) -> Bool {

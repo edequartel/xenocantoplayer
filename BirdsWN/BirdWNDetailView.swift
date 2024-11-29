@@ -10,6 +10,7 @@ import SwiftUI
 
 struct BirdWNDetailView: View {
   @EnvironmentObject private var bookMarksViewModel: BookMarksViewModel
+  @EnvironmentObject private var cacheMarksViewModel: BookMarksViewModel
 
   let bird: BirdWN
 
@@ -20,7 +21,13 @@ struct BirdWNDetailView: View {
           Text("\(bird.name)")
             .font(.headline)
           Spacer()
-          Image(systemName: bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) ? "star.fill" : "")
+          if bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) {
+              Image(systemName: "star.fill")
+          }
+          if cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased())) {
+              Image(systemName: "circle.fill")
+              .foregroundColor(.blue)
+          }
         }
         Text(bird.scientificName)
           .font(.subheadline)

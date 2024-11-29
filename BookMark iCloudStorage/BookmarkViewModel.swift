@@ -23,10 +23,10 @@ class BookMarksViewModel: ObservableObject {
   let fileManager = FileManager.default
   let filePath: URL
 
-  init() {
+  init(fileName: String) {
       // Get the documents directory path
       let documentsPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-      filePath = documentsPath.appendingPathComponent("bookmarks.json")
+      filePath = documentsPath.appendingPathComponent(fileName)
 
       // Check if the file exists
       if fileManager.fileExists(atPath: filePath.path) {
@@ -34,7 +34,7 @@ class BookMarksViewModel: ObservableObject {
           loadRecords()
       } else {
           print("File does not exist at path: \(filePath.path). Creating file...")
-          let initialContent = "{}" // Default empty JSON content
+          let initialContent = "[]" // Default empty JSON content
 
           // Attempt to create the file
           do {

@@ -14,14 +14,13 @@ struct BirdDetailView: View {
     VStack(alignment: .leading, spacing: 10) {
       // Bird Name
       let combinedString = [
-          nativeName ?? "",
-          bird.gen ?? "",
-          bird.sp ?? "",
-          convertToDutchDateAccessible(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "",
-//          bird.date ?? "",
-//          bird.time ?? "",
-          bird.rec ?? "",
-          bird.loc ?? ""
+        nativeName ?? "",
+        bird.en ?? "",
+        bird.gen ?? "",
+        bird.sp ?? "",
+        convertToDutchDateAccessible(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "",
+        bird.rec ?? "",
+        bird.loc ?? ""
       ].joined(separator: ",")
 
       VStack(alignment: .leading, spacing: 10) {
@@ -43,7 +42,7 @@ struct BirdDetailView: View {
 
 
         Text(convertToDutchDate(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "")
-        .font(.caption)
+          .font(.caption)
       }
       .accessibilityElement(children: .combine)
       .accessibilityLabel(combinedString)
@@ -63,32 +62,23 @@ struct BirdDetailView: View {
           .accessibilityHidden(true)
       }
 
-
-      // Full Sono Image
-//      if let smallSono = bird.sono?.full, let sonoURL = URL(string: "https:" + smallSono) {
-//        KFImage(sonoURL)
-//          .resizable()
-//          .scaledToFit()
-//          .accessibilityHidden(true)
-//      }
-
-
       if isMP3(filename: bird.fileName ?? "no streaming format") {
         PlayerControlsView(sounds: [bird.file ?? ""], length: bird.length ?? "01:00")
-//          .border(Color.blue, width: 1)
-//          .background(
-//              RoundedRectangle(cornerRadius: 8)
-//                  .stroke(Color.blue, lineWidth: 1)
-//          )
       } else {
         Text("audio is not streamable")
       }
 
       if !(bird.rmk?.isEmpty ?? true) {
-        Markdown(bird.rmk ?? "No remark")
-          .frame(maxWidth: .infinity, minHeight: .infinity) // Ensure the Markdown view itself doesn’t scroll
-          .multilineTextAlignment(.leading) // Align text to the leading edge
-          .padding(8)
+        Markdown(bird.rmk ?? "No remarks")
+//          .markdownTextStyle(\.code) {
+//            FontFamilyVariant(.monospaced)
+//            FontSize(.em(0.85))
+//            ForegroundColor(.purple)
+//            BackgroundColor(.purple.opacity(0.25))
+//          }
+          .frame(maxWidth: .infinity)
+          .padding()
+        //        .border(Color.gray, width: 1)
           .background(
             RoundedRectangle(cornerRadius: 8)
               .stroke(Color.gray, lineWidth: 1)

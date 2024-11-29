@@ -23,3 +23,7 @@ func version() -> String {
   }
   return "Version \(version) build \(build)"
 }
+
+func stringToIntHash(_ input: String) -> Int {
+    return input.hash
+}
