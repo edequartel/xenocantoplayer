@@ -12,6 +12,7 @@ import SwiftData
 struct BirdWNListView: View {
   @StateObject private var viewModel = BirdWNViewModel()
   @EnvironmentObject private var bookMarksViewModel: BookMarksViewModel
+  @EnvironmentObject private var cacheMarksViewModel: BookMarksViewModel
 
   @State private var searchText = "" // State to store search query
   @State private var isSortedAscending = true // State to track sort order
@@ -29,7 +30,6 @@ struct BirdWNListView: View {
       let matchesSearchText = searchText.isEmpty ||
       bird.name.localizedCaseInsensitiveContains(searchText) ||
       bird.scientificName.localizedCaseInsensitiveContains(searchText)
-      //        let matchesRarity = (bird.rarity == selectedRarity.rawValue) || (selectedRarity == .all)
       let speciesFavorite = bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) || !showFavorite
       return matchesSearchText && speciesFavorite // && matchesRarity
     }
@@ -58,6 +58,15 @@ struct BirdWNListView: View {
                     BirdWNDetailView(bird: bird)
                   }
                 }
+                .padding()
+                .background(
+                    cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased()))
+                    ? Color(.lightText) // Use UIColor for `.lightGray`
+                        : Color.white
+                )
+                .cornerRadius(8) // Optional: Add rounded corners
+                .shadow(radius: 2) // Optional: Add a shadow for better UI
+
                 .swipeActions(edge: .trailing, allowsFullSwipe: false ) {
                   Button(action: {
                     if !bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) {
