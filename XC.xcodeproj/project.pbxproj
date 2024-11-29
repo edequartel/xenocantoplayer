@@ -65,6 +65,11 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		471F7AC72CF98CB500BF529C /* Bookmark */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Bookmark;
+			sourceTree = "<group>";
+		};
 		47769F0A2CF604D100E6AA0F /* BookMark iCloudStorage */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "BookMark iCloudStorage";
@@ -105,11 +110,6 @@
 			path = Lists;
 			sourceTree = "<group>";
 		};
-		47B3B4572CF70C3800F95E76 /* Bookmark */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Bookmark;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,12 +145,12 @@
 			isa = PBXGroup;
 			children = (
 				471F7A9A2CF85F0D00BF529C /* Misc.swift */,
-				471F7A982CF85C5C00BF529C /* Managers */,
 				471F7A8F2CF853FF00BF529C /* todo.txt */,
-				47B3B4572CF70C3800F95E76 /* Bookmark */,
 				47A862482CF4A2E90016BB04 /* XCApp.swift */,
 				47A862472CF4A2E90016BB04 /* ContentView.swift */,
 				471F7A942CF85A9100BF529C /* SettingsView.swift */,
+				471F7A982CF85C5C00BF529C /* Managers */,
+				471F7AC72CF98CB500BF529C /* Bookmark */,
 				47A8626F2CF5C0830016BB04 /* Audio */,
 				47A862652CF59B2A0016BB04 /* BirdsWN */,
 				47A862622CF5995E0016BB04 /* BirdsCX */,
@@ -198,13 +198,13 @@
 			);
 			fileSystemSynchronizedGroups = (
 				471F7A982CF85C5C00BF529C /* Managers */,
+				471F7AC72CF98CB500BF529C /* Bookmark */,
 				47769F0A2CF604D100E6AA0F /* BookMark iCloudStorage */,
 				47911B442CF44F51006DEB07 /* XC */,
 				47A862622CF5995E0016BB04 /* BirdsCX */,
 				47A862652CF59B2A0016BB04 /* BirdsWN */,
 				47A8626F2CF5C0830016BB04 /* Audio */,
 				47A8627E2CF5E7A80016BB04 /* Lists */,
-				47B3B4572CF70C3800F95E76 /* Bookmark */,
 			);
 			name = XC;
 			packageProductDependencies = (
@@ -506,7 +506,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;
@@ -543,7 +543,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;
