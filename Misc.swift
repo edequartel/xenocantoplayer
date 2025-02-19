@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let show = true
+let show = false
 
 func openWebsite(urlString: String) {
   if let url = URL(string: urlString) {
