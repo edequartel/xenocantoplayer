@@ -8,6 +8,7 @@
 import SwiftUI
 
 let show = false
+let isss = false
 
 func openWebsite(urlString: String) {
   if let url = URL(string: urlString) {
