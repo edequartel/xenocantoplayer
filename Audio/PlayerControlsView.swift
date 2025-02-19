@@ -57,6 +57,7 @@ struct PlayerControlsView: View {
           .accessibilityLabel("position \(player.currentTime) of length \(length)")
 
         }
+        .accessibilityHidden(true)
 
         HStack {
           Spacer()
@@ -107,6 +108,7 @@ struct PlayerControlsView: View {
       }
       .onAppear {
         player.fill(sounds)
+        player.play()
       }
       .onDisappear {
         player.stop()

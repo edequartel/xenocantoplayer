@@ -13,6 +13,8 @@ struct BirdListView: View {
   let scientificName: String
   var nativeName: String?
 
+  @State private var selectedBird: Bird?
+
   var body: some View {
     VStack {
       ShowView(title: "BirdListView")
@@ -26,16 +28,23 @@ struct BirdListView: View {
         } else {
           VStack {
             List(viewModel.birds.filter { isMP3(filename: $0.fileName ?? "") }) { bird in
-              NavigationLink(destination: BirdDetailView(bird: bird, nativeName: nativeName)) {
-                HStack {
-                  Text(bird.loc ?? "")
+              Text(bird.loc ?? "")
+                .onTapGesture {
+                  selectedBird = bird // Set selected bird to show sheet
                 }
-              }
+                .navigationTitle("\(nativeName ?? "")")
             }
+            .listStyle(.plain)
+          }
+          .sheet(item: $selectedBird) { bird in
+            BirdDetailView(bird: bird, nativeName: nativeName)
+              .presentationDetents([.fraction(0.6)]) // Enables swipe-down to dismiss
+              .presentationDragIndicator(.visible) // Shows a handle at the top
           }
         }
       }
     }
+
 
     .onAppear {
       if !viewModel.hasFetchedBirds {

@@ -13,80 +13,38 @@ struct BirdDetailView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       ShowView(title: "BirdDetailView")
-      // Bird Name
-      let combinedString = [
-        nativeName ?? "",
-        bird.en ?? "",
-        bird.gen ?? "",
-        bird.sp ?? "",
-        convertToDutchDateAccessible(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "",
-        bird.rec ?? "",
-        bird.loc ?? ""
-      ].joined(separator: ",")
-
-      VStack(alignment: .leading, spacing: 10) {
-        Text(nativeName ?? "")
-          .font(.headline)
-
-        Text(bird.en ?? "No bird name")
-
-        HStack {
-          Text(bird.gen ?? "")
-          Text(bird.sp ?? "")
-          Spacer()
-        }
-        .italic()
-
-//        Text(bird.rec ?? "")
-
-        Text(bird.loc ?? "")
-
-
-        Text(convertToDutchDate(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "")
-          .font(.caption)
-      }
-      .accessibilityElement(children: .combine)
-      .accessibilityLabel(combinedString)
-
-      // Large Sono Image
-      if let smallSono = bird.sono?.small, let sonoURL = URL(string: "https:" + smallSono) {
-        KFImage(sonoURL)
-          .resizable()
-          .scaledToFit()
-          .accessibilityHidden(true)
-      }
-
-      if let smallOsci = bird.osci?.small, let osciURL1 = URL(string: "https:" + smallOsci) {
-        KFImage(osciURL1)
-          .resizable()
-          .scaledToFit()
-          .accessibilityHidden(true)
-      }
-
+      //
       if isMP3(filename: bird.fileName ?? "no streaming format") {
         PlayerControlsView(sounds: [bird.file ?? ""], length: bird.length ?? "01:00")
       } else {
         Text("audio is not streamable")
       }
 
-      if !(bird.rmk?.isEmpty ?? true) {
-        Markdown(bird.rmk ?? "No remarks")
-//          .markdownTextStyle(\.code) {
-//            FontFamilyVariant(.monospaced)
-//            FontSize(.em(0.85))
-//            ForegroundColor(.purple)
-//            BackgroundColor(.purple.opacity(0.25))
-//          }
-          .frame(maxWidth: .infinity)
-          .padding()
-        //        .border(Color.gray, width: 1)
-          .background(
-            RoundedRectangle(cornerRadius: 8)
-              .stroke(Color.gray, lineWidth: 1)
-          )
-      }
 
-      Spacer()
+      //images
+      VStack(alignment: .leading, spacing: 10) {
+        if let smallSono = bird.sono?.small, let sonoURL = URL(string: "https:" + smallSono) {
+          KFImage(sonoURL)
+            .resizable()
+            .scaledToFit()
+            .accessibilityHidden(true)
+        }
+
+        if let smallOsci = bird.osci?.small, let osciURL1 = URL(string: "https:" + smallOsci) {
+          KFImage(osciURL1)
+            .resizable()
+            .scaledToFit()
+            .accessibilityHidden(true)
+        }
+      }
+      .frame(maxWidth: .infinity)
+      .padding()
+      //        .border(Color.gray, width: 1)
+      .background(
+        RoundedRectangle(cornerRadius: 8)
+          .stroke(Color.gray, lineWidth: 1)
+      )
+
     }
     .padding()
   }
@@ -153,3 +111,82 @@ func convertToDutchDate(dateString: String, timeString: String) -> String? {
   // Capitalize only the first character
   return formattedString.prefix(1).uppercased() + formattedString.dropFirst()
 }
+
+
+//
+// Bird Name
+//      let combinedString = [
+//        nativeName ?? "",
+//        bird.en ?? "",
+//        bird.gen ?? "",
+//        bird.sp ?? "",
+//        convertToDutchDateAccessible(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "",
+//        bird.rec ?? "",
+//        bird.loc ?? ""
+//      ].joined(separator: ",")
+
+//      VStack(alignment: .leading, spacing: 10) {
+//        Text(nativeName ?? "")
+//          .font(.headline)
+//
+//        Text(bird.en ?? "No bird name")
+//
+//        HStack {
+//          Text(bird.gen ?? "")
+//          Text(bird.sp ?? "")
+//          Spacer()
+//        }
+//        .italic()
+//
+////        Text(bird.rec ?? "")
+//
+//        Text(bird.loc ?? "")
+//
+//
+//        Text(convertToDutchDate(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "")
+//          .font(.caption)
+//      }
+//      .frame(maxWidth: .infinity)
+//      .padding()
+//    //        .border(Color.gray, width: 1)
+//      .background(
+//        RoundedRectangle(cornerRadius: 8)
+//          .stroke(Color.gray, lineWidth: 1)
+//      )
+
+//      .accessibilityElement(children: .combine)
+//      .accessibilityLabel(combinedString)
+
+// Large Sono Image
+//      if let smallSono = bird.sono?.small, let sonoURL = URL(string: "https:" + smallSono) {
+//        KFImage(sonoURL)
+//          .resizable()
+//          .scaledToFit()
+//          .accessibilityHidden(true)
+//      }
+
+//      if let smallOsci = bird.osci?.small, let osciURL1 = URL(string: "https:" + smallOsci) {
+//        KFImage(osciURL1)
+//          .resizable()
+//          .scaledToFit()
+//          .accessibilityHidden(true)
+//      }
+
+//      if !(bird.rmk?.isEmpty ?? true) {
+//        Markdown(bird.rmk ?? "No remarks")
+////          .markdownTextStyle(\.code) {
+////            FontFamilyVariant(.monospaced)
+////            FontSize(.em(0.85))
+////            ForegroundColor(.purple)
+////            BackgroundColor(.purple.opacity(0.25))
+////          }
+//          .frame(maxWidth: .infinity)
+//          .padding()
+//        //        .border(Color.gray, width: 1)
+//          .background(
+//            RoundedRectangle(cornerRadius: 8)
+//              .stroke(Color.gray, lineWidth: 1)
+//          )
+//      }
+
+//      Spacer()

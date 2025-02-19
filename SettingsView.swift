@@ -24,12 +24,12 @@ struct SettingsView: View {
           .padding(4)
           .accessibilityElement(children: .combine)
         }
-        Button(action: {
-          openWebsite(urlString: "https://edequartel.github.io/xenocantoplayer/")
-        }) {
-          Text("Open website XC")
-        }
-        .accessibilityHint("Open website XC")
+//        Button(action: {
+//          openWebsite(urlString: "https://edequartel.github.io/xenocantoplayer/")
+//        }) {
+//          Text("Open website XC")
+//        }
+//        .accessibilityHint("Open website XC")
       }
   }
 }
