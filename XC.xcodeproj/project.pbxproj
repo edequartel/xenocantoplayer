@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4708FAC02D65EA620048F7E1 /* ShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708FABF2D65EA620048F7E1 /* ShowView.swift */; };
 		471F7A902CF8540700BF529C /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 471F7A8F2CF853FF00BF529C /* todo.txt */; };
 		471F7A952CF85A9100BF529C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471F7A942CF85A9100BF529C /* SettingsView.swift */; };
 		471F7A9B2CF85F1300BF529C /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471F7A9A2CF85F0D00BF529C /* Misc.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4708FABF2D65EA620048F7E1 /* ShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowView.swift; sourceTree = "<group>"; };
 		471F7A8F2CF853FF00BF529C /* todo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		471F7A942CF85A9100BF529C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		471F7A9A2CF85F0D00BF529C /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				47A862482CF4A2E90016BB04 /* XCApp.swift */,
 				47A862472CF4A2E90016BB04 /* ContentView.swift */,
 				471F7A942CF85A9100BF529C /* SettingsView.swift */,
+				4708FABF2D65EA620048F7E1 /* ShowView.swift */,
 				471F7A982CF85C5C00BF529C /* Managers */,
 				471F7AC72CF98CB500BF529C /* Bookmark */,
 				47A8626F2CF5C0830016BB04 /* Audio */,
@@ -346,6 +349,7 @@
 			files = (
 				471F7A952CF85A9100BF529C /* SettingsView.swift in Sources */,
 				471F7A9B2CF85F1300BF529C /* Misc.swift in Sources */,
+				4708FAC02D65EA620048F7E1 /* ShowView.swift in Sources */,
 				47A8624D2CF4A2E90016BB04 /* ContentView.swift in Sources */,
 				47A8624E2CF4A2E90016BB04 /* XCApp.swift in Sources */,
 			);
@@ -507,7 +511,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;
@@ -544,7 +548,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;

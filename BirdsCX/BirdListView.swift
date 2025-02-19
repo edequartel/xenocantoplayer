@@ -14,19 +14,22 @@ struct BirdListView: View {
   var nativeName: String?
 
   var body: some View {
-    Group {
-      if viewModel.isLoading {
-        ProgressView("Loading data...")
-          .progressViewStyle(CircularProgressViewStyle())
+    VStack {
+      ShowView(title: "BirdListView")
+      Group {
+        if viewModel.isLoading {
+          ProgressView("Loading data...")
+            .progressViewStyle(CircularProgressViewStyle())
 
-      } else if let errorMessage = viewModel.errorMessage {
-        Text("Error: \(errorMessage)")
-      } else {
-        VStack {
-          List(viewModel.birds.filter { isMP3(filename: $0.fileName ?? "") }) { bird in
-            NavigationLink(destination: BirdDetailView(bird: bird, nativeName: nativeName)) {
-              HStack {
-                Text(bird.loc ?? "")
+        } else if let errorMessage = viewModel.errorMessage {
+          Text("Error: \(errorMessage)")
+        } else {
+          VStack {
+            List(viewModel.birds.filter { isMP3(filename: $0.fileName ?? "") }) { bird in
+              NavigationLink(destination: BirdDetailView(bird: bird, nativeName: nativeName)) {
+                HStack {
+                  Text(bird.loc ?? "")
+                }
               }
             }
           }

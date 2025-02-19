@@ -24,6 +24,8 @@ struct PlayerControlsView: View {
   let length: String
 
   var body: some View {
+    ShowView(title: "PlayerControlsView")
+
     if !(sounds.isEmpty) {
 
       VStack {
@@ -145,6 +147,8 @@ struct PlayerControlsView_Previews: PreviewProvider {
       .environmentObject(Player())
   }
 }
+
+
 
 //struct ContentView: View {
 //    @EnvironmentObject var player: Player

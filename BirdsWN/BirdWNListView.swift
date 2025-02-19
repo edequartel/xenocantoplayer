@@ -10,6 +10,8 @@ import SwiftUI
 import SwiftData
 
 struct BirdWNListView: View {
+  @Environment(\.colorScheme) var colorScheme // Detect system light/dark mode
+
   @StateObject private var viewModel = BirdWNViewModel()
   @EnvironmentObject private var bookMarksViewModel: BookMarksViewModel
   @EnvironmentObject private var cacheMarksViewModel: BookMarksViewModel
@@ -48,6 +50,7 @@ struct BirdWNListView: View {
     NavigationStack {
       VStack {
 //        BookMarksView()
+        ShowView(title: "BirdWNListView")
         List {
           // Group sorted birds by the first letter of their names
           ForEach(groupedBirds.keys.sorted(), id: \.self) { letter in
@@ -59,11 +62,11 @@ struct BirdWNListView: View {
                   }
                 }
                 .padding()
-                .background(
-                    cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased()))
-                    ? Color(.lightText) // Use UIColor for `.lightGray`
-                        : Color.white
-                )
+//                .background(
+//                    cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased()))
+//                    ? Color(.lightText) // Use UIColor for `.lightGray`
+//                        : Color.white
+//                )
                 .cornerRadius(8) // Optional: Add rounded corners
                 .shadow(radius: 2) // Optional: Add a shadow for better UI
 
@@ -83,6 +86,9 @@ struct BirdWNListView: View {
             }
           }
         }
+
+        .listStyle(.plain)
+
         .toolbar {
           ToolbarItem(placement: .navigationBarLeading) {
             Button(action: {

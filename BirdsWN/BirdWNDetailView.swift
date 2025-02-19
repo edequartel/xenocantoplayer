@@ -15,26 +15,35 @@ struct BirdWNDetailView: View {
   let bird: BirdWN
 
   var body: some View {
-    HStack {
-      VStack(alignment: .leading) {
-        HStack {
-          Text("\(bird.name)")
-            .font(.headline)
-          Spacer()
-          if bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) {
+    VStack {
+      ShowView(title: "BirdWNDetailView")
+      HStack {
+        VStack(alignment: .leading) {
+          HStack {
+            if cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased())) {
+              Image(systemName: "arrow.down.circle.fill")
+                .foregroundColor(.gray)
+            }
+
+            Text("\(bird.name)")
+              .font(.headline)
+
+            Spacer()
+            if bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) {
               Image(systemName: "star.fill")
+                .foregroundColor(.gray)
+            }
+
+//                .foregroundColor(.blue)
+//            }
           }
-//          if cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased())) {
-//              Image(systemName: "circle.fill")
-//              .foregroundColor(.blue)
-//          }
+          Text(bird.scientificName)
+            .font(.subheadline)
+            .foregroundColor(.gray)
+            .italic()
         }
-        Text(bird.scientificName)
-          .font(.subheadline)
-          .foregroundColor(.gray)
-          .italic()
+        Spacer()
       }
-      Spacer()
     }
   }
 }

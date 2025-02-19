@@ -12,6 +12,7 @@ struct BirdDetailView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
+      ShowView(title: "BirdDetailView")
       // Bird Name
       let combinedString = [
         nativeName ?? "",
@@ -36,7 +37,7 @@ struct BirdDetailView: View {
         }
         .italic()
 
-        Text(bird.rec ?? "")
+//        Text(bird.rec ?? "")
 
         Text(bird.loc ?? "")
 

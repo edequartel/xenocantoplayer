@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let show = true
+
 func openWebsite(urlString: String) {
   if let url = URL(string: urlString) {
     UIApplication.shared.open(url, options: [:], completionHandler: nil)
