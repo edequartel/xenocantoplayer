@@ -14,12 +14,31 @@ struct BirdWNDetailView: View {
 
   let bird: BirdWN
 
+  var accessibilityLabel: String {
+    var label = "\(bird.name),"
+    label += " \(bird.scientificName),"
+
+    if cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased())) {
+      label += " downloaded,"
+    }
+
+    if bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) {
+      label += " favoriet."
+    }
+
+    return label
+  }
+
   var body: some View {
     VStack {
       ShowView(title: "BirdWNDetailView")
       HStack {
         VStack(alignment: .leading) {
           HStack {
+            Image(systemName: "circle.fill")
+              .foregroundColor(rarityColor(value: bird.rarity))
+
+
             if cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased())) {
               Image(systemName: "arrow.down.circle.fill")
                 .foregroundColor(.gray)
@@ -33,9 +52,6 @@ struct BirdWNDetailView: View {
               Image(systemName: "star.fill")
                 .foregroundColor(.gray)
             }
-
-//                .foregroundColor(.blue)
-//            }
           }
           Text(bird.scientificName)
             .font(.subheadline)
@@ -45,7 +61,7 @@ struct BirdWNDetailView: View {
         Spacer()
       }
     }
+    .accessibilityElement(children: .combine)
+    .accessibilityLabel(accessibilityLabel)
   }
 }
-
-

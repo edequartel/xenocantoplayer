@@ -47,9 +47,15 @@ struct BirdListView: View {
 
 
     .onAppear {
-      if !viewModel.hasFetchedBirds {
+      //      if !viewModel.hasFetchedBirds {
+      if !cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(scientificName.lowercased())) {
+        viewModel.fetchBirds(name: scientificName, clearCache: true, onComplete: {
+          cacheMarksViewModel.appendRecord(speciesID: stringToIntHash(scientificName.lowercased()))
+        })
+        //        cacheMarksViewModel.appendRecord(speciesID: stringToIntHash(scientificName.lowercased()))
+      }
+      else {
         viewModel.fetchBirds(name: scientificName, clearCache: false)
-        cacheMarksViewModel.appendRecord(speciesID: stringToIntHash(scientificName.lowercased()))
       }
     }
   }
