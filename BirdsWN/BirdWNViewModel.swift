@@ -63,11 +63,10 @@ class BirdWNViewModel: ObservableObject {
           let isFavorite = bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) || !showFavorite
           let isDownloaded = cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased())) || !showDownloaded
 
-//          let isAll = (bird.native) // && showFilterAll == .native) || (showFilterAll == .all)
+          let isAll = (bird.native) // && showFilterAll == .native) || (showFilterAll == .all)
+          let isRarity = (bird.rarity != 4)
 
-          return matchesSearchText && isFavorite && isDownloaded //&& isAll
-
-          //              && isRarity
+          return matchesSearchText && isFavorite && isDownloaded && isAll && isRarity
         }
 
         DispatchQueue.main.async {

@@ -23,6 +23,8 @@ struct BirdWNListView: View {
   @State private var selectedFilterOption: FilterAllOption = .all
   @State private var selectedRarityOption: FilteringRarityOption = .all
 
+  @State private var hasFilteredOnce = false // Track if filtering has been applied
+
   var groupedBirds: [String: [BirdWN]] {
     viewModel.groupedBirds()
   }
@@ -65,6 +67,20 @@ struct BirdWNListView: View {
               }
             }
           }
+          .onAppear {
+              if !hasFilteredOnce {
+                print("*")
+                  viewModel.filterBirds(
+                      searchText: searchText,
+                      showFavorite: showFavorite,
+                      showDownloaded: showDownloaded,
+                      showFilterAll: selectedFilterOption,
+                      bookMarksViewModel: bookMarksViewModel,
+                      cacheMarksViewModel: cacheMarksViewModel
+                  )
+                  hasFilteredOnce = true
+              }
+          }
 
 
           .listStyle(.plain)
@@ -105,16 +121,17 @@ struct BirdWNListView: View {
     }
 
 
-//    .onChange(of: selectedFilterOption) { newValue, oldvalue in
-//      viewModel.filterBirds(
-//        searchText: searchText,
-//        showFavorite: showFavorite,
-//        showDownloaded: showDownloaded,
-//        showFilterAll: newValue,
-//        bookMarksViewModel: bookMarksViewModel,
-//        cacheMarksViewModel: cacheMarksViewModel
-//      )
-//    }
+
+    .onChange(of: selectedFilterOption) { newValue in
+        viewModel.filterBirds(
+            searchText: searchText, // Current value
+            showFavorite: showFavorite, // Current value
+            showDownloaded: showDownloaded, // Current value
+            showFilterAll: newValue, // Only new value passed
+            bookMarksViewModel: bookMarksViewModel,
+            cacheMarksViewModel: cacheMarksViewModel
+        )
+    }
 
     .onChange(of: searchText) { newValue, oldvalue in
       viewModel.filterBirds(
