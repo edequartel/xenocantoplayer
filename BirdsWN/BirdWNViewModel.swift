@@ -52,6 +52,7 @@ class BirdWNViewModel: ObservableObject {
                      showFavorite: Bool,
                      showDownloaded: Bool,
                      showFilterAll: FilterAllOption,
+                     showFilterRarity: FilteringRarityOption,
                      bookMarksViewModel: BookMarksViewModel,
                      cacheMarksViewModel: BookMarksViewModel) {
       DispatchQueue.global(qos: .userInitiated).async {
@@ -63,10 +64,12 @@ class BirdWNViewModel: ObservableObject {
           let isFavorite = bookMarksViewModel.isSpeciesIDInRecords(speciesID: bird.species) || !showFavorite
           let isDownloaded = cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased())) || !showDownloaded
 
-          let isAll = (bird.native) // && showFilterAll == .native) || (showFilterAll == .all)
-          let isRarity = (bird.rarity != 4)
 
-          return matchesSearchText && isFavorite && isDownloaded && isAll && isRarity
+          let isAll = ((bird.native) && showFilterAll == .native) || (showFilterAll == .all)
+          let isRarity = ((bird.rarity) == showFilterRarity.intValue) //|| (showFilterRarity == .all)
+
+          return matchesSearchText && isFavorite && isDownloaded && isRarity && isAll
+//          return isRarity
         }
 
         DispatchQueue.main.async {

@@ -125,6 +125,7 @@ struct FilterOptionsView: View {
         HStack {
           Image(systemName: "circle.fill")
             .foregroundColor(rarityColor(value: option.intValue ?? 0))
+//          Text("\(option.intValue ?? 0)")
           Text(option.localized)
           Spacer()
           if currentFilteringOption == option {

@@ -38,7 +38,8 @@ struct BirdWNDetailView: View {
             Image(systemName: "circle.fill")
               .foregroundColor(rarityColor(value: bird.rarity))
 
-
+//            Text("\(bird.rarity)")
+            
             if cacheMarksViewModel.isSpeciesIDInRecords(speciesID: stringToIntHash(bird.scientificName.lowercased())) {
               Image(systemName: "arrow.down.circle.fill")
                 .foregroundColor(.gray)

@@ -20,9 +20,8 @@ struct BirdWNListView: View {
   @State private var showFavorite = false // State to track filter
   @State private var showDownloaded = false // State to track filter
 
-  @State private var selectedFilterOption: FilterAllOption = .all
+  @State private var selectedFilterOption: FilterAllOption = .native
   @State private var selectedRarityOption: FilteringRarityOption = .all
-
   @State private var hasFilteredOnce = false // Track if filtering has been applied
 
   var groupedBirds: [String: [BirdWN]] {
@@ -75,6 +74,7 @@ struct BirdWNListView: View {
                       showFavorite: showFavorite,
                       showDownloaded: showDownloaded,
                       showFilterAll: selectedFilterOption,
+                      showFilterRarity: selectedRarityOption,
                       bookMarksViewModel: bookMarksViewModel,
                       cacheMarksViewModel: cacheMarksViewModel
                   )
@@ -103,14 +103,14 @@ struct BirdWNListView: View {
               }
             }
 
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//              NavigationLink(destination: SortFilterSpeciesView(
-//                selectedFilterAllOption: $selectedFilterOption,
-//                selectedRarityOption: $selectedRarityOption
-//              )) {
-//                Image(systemSymbol: .ellipsisCircle)
-//              }
-//            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+              NavigationLink(destination: SortFilterSpeciesView(
+                selectedFilterAllOption: $selectedFilterOption,
+                selectedRarityOption: $selectedRarityOption
+              )) {
+                Image(systemSymbol: .ellipsisCircle)
+              }
+            }
 
           }
           .navigationTitle("Birds")
@@ -120,53 +120,68 @@ struct BirdWNListView: View {
       }
     }
 
-
-
-    .onChange(of: selectedFilterOption) { newValue in
+    .onChange(of: selectedRarityOption) { oldvalue, newvalue in
+      print("changed \(newvalue)")
         viewModel.filterBirds(
             searchText: searchText, // Current value
             showFavorite: showFavorite, // Current value
             showDownloaded: showDownloaded, // Current value
-            showFilterAll: newValue, // Only new value passed
+            showFilterAll: selectedFilterOption, // Only new value passed
+            showFilterRarity: newvalue,
             bookMarksViewModel: bookMarksViewModel,
             cacheMarksViewModel: cacheMarksViewModel
         )
     }
 
-    .onChange(of: searchText) { newValue, oldvalue in
+    .onChange(of: selectedFilterOption) { oldvalue, newvalue in
+        viewModel.filterBirds(
+            searchText: searchText, // Current value
+            showFavorite: showFavorite, // Current value
+            showDownloaded: showDownloaded, // Current value
+            showFilterAll: newvalue, // Only new value passed
+            showFilterRarity: selectedRarityOption,
+            bookMarksViewModel: bookMarksViewModel,
+            cacheMarksViewModel: cacheMarksViewModel
+        )
+    }
+
+    .onChange(of: searchText) { oldvalue, newvalue in
       viewModel.filterBirds(
-        searchText: newValue,
+        searchText: newvalue,
         showFavorite: showFavorite,
         showDownloaded: showDownloaded,
         showFilterAll: selectedFilterOption,
+        showFilterRarity: selectedRarityOption,
         bookMarksViewModel: bookMarksViewModel,
         cacheMarksViewModel: cacheMarksViewModel
       )
     }
 
-    .onChange(of: showFavorite) { newValue, oldvalue in
+    .onChange(of: showFavorite) { oldvalue, newvalue in
       viewModel.filterBirds(
         searchText: searchText,
         showFavorite: showFavorite,
         showDownloaded: showDownloaded,
         showFilterAll: selectedFilterOption,
+        showFilterRarity: selectedRarityOption,
         bookMarksViewModel: bookMarksViewModel,
         cacheMarksViewModel: cacheMarksViewModel
       )
     }
 
-    .onChange(of: showDownloaded) { newValue, oldvalue in
+    .onChange(of: showDownloaded) {oldvalue, newvalue in
       viewModel.filterBirds(
         searchText: searchText,
         showFavorite: showFavorite,
         showDownloaded: showDownloaded,
         showFilterAll: selectedFilterOption,
+        showFilterRarity: selectedRarityOption,
         bookMarksViewModel: bookMarksViewModel,
         cacheMarksViewModel: cacheMarksViewModel
       )
     }
 
-    .onChange(of: isSortedAscending) { newValue, oldvalue in
+    .onChange(of: isSortedAscending) { oldvalue, newvalue in
       viewModel.sortBirds(ascending: isSortedAscending)
     }
   }
