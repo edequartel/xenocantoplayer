@@ -5,6 +5,15 @@ import Alamofire
 import Kingfisher
 import AVFoundation
 
+let creativeCommonsLicenses: [String: String] = [
+    "//creativecommons.org/licenses/by-nc/2.5/": "CC BY",
+    "//creativecommons.org/licenses/by-nc-sa/2.5/": "CC BY-SA",
+    "//creativecommons.org/licenses/by-nc-nd/2.5/": "CC BY-ND",
+    "//creativecommons.org/licenses/by-nc-nc/2.5/": "CC BY-NC",
+    "//creativecommons.org/licenses/by-nc-sa/4.0/": "CC BY-NC-SA",
+    "//creativecommons.org/licenses/by-nc-nd/4.0/": "CC BY-NC-ND"
+]
+
 // MARK: - View
 struct BirdListView: View {
   @StateObject private var viewModel = BirdViewModel()
@@ -28,8 +37,28 @@ struct BirdListView: View {
         } else {
           VStack {
             List(viewModel.birds.filter { isMP3(filename: $0.fileName ?? "") }) { bird in
-              Text(bird.loc ?? "")
+              VStack {
+                HStack {
+                  Text("\(bird.q ?? "")")
+                    .font(.caption)
+                  Text("\(bird.type ?? "")")
+                    .font(.caption)
+                  Text("# \(bird.id)")
+                    .font(.caption)
+                  Spacer()
+                }
+                HStack {
+                  Text("\(bird.rec ?? "")")
+                    .font(.caption)
+//                  Text("\(bird.lic ?? "")")
+//                    .font(.caption)
+                  Text(creativeCommonsLicenses[bird.lic ?? ""] ?? "Unknown License")
+                    .font(.caption)
+                  Spacer()
+                }
+              }
                 .onTapGesture {
+                  print(bird.lic ?? "")
                   selectedBird = bird // Set selected bird to show sheet
                 }
                 .navigationTitle("\(nativeName ?? "")")

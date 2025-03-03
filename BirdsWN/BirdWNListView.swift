@@ -21,7 +21,7 @@ struct BirdWNListView: View {
   @State private var showDownloaded = false // State to track filter
 
   @State private var selectedFilterOption: FilterAllOption = .native
-  @State private var selectedRarityOption: FilteringRarityOption = .all
+  @State private var selectedRarityOption: FilteringRarityOption = .uncommon
   @State private var hasFilteredOnce = false // Track if filtering has been applied
 
   var groupedBirds: [String: [BirdWN]] {

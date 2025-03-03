@@ -21,8 +21,10 @@ class BirdViewModel: ObservableObject {
 
 
   func fetchBirds(name: String, clearCache: Bool = false, onComplete: (() -> Void)? = nil) {
-    let checkedName = name.lowercased().replacingOccurrences(of: " ", with: "+")
-    let url = "https://xeno-canto.org/api/2/recordings?query=\(checkedName)"
+    let checkedName = name.lowercased()
+    let url = "https://xeno-canto.org/api/2/recordings?query=gen:\(checkedName)&page=1"
+
+    print(url)
     let cacheKey = name.lowercased()
     isLoading = true
     errorMessage = nil
