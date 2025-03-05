@@ -14,12 +14,15 @@ struct BirdDetailView: View {
     VStack(alignment: .leading, spacing: 10) {
       ShowView(title: "BirdDetailView")
       //
+//      HStack {
+//      
+//      }
+
       if isMP3(filename: bird.fileName ?? "no streaming format") {
         PlayerControlsView(sounds: [bird.file ?? ""], length: bird.length ?? "01:00")
       } else {
         Text("audio is not streamable")
       }
-
 
       //images
       VStack(alignment: .leading, spacing: 10) {
@@ -44,6 +47,9 @@ struct BirdDetailView: View {
         RoundedRectangle(cornerRadius: 8)
           .stroke(Color.gray, lineWidth: 1)
       )
+
+      //url
+      OpenURLView(birdURL: bird.url)
 
     }
     .padding()
@@ -113,80 +119,33 @@ func convertToDutchDate(dateString: String, timeString: String) -> String? {
 }
 
 
-//
-// Bird Name
-//      let combinedString = [
-//        nativeName ?? "",
-//        bird.en ?? "",
-//        bird.gen ?? "",
-//        bird.sp ?? "",
-//        convertToDutchDateAccessible(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "",
-//        bird.rec ?? "",
-//        bird.loc ?? ""
-//      ].joined(separator: ",")
+struct OpenURLView: View {
+    var birdURL: String? // The URL source
 
-//      VStack(alignment: .leading, spacing: 10) {
-//        Text(nativeName ?? "")
-//          .font(.headline)
-//
-//        Text(bird.en ?? "No bird name")
-//
-//        HStack {
-//          Text(bird.gen ?? "")
-//          Text(bird.sp ?? "")
-//          Spacer()
-//        }
-//        .italic()
-//
-////        Text(bird.rec ?? "")
-//
-//        Text(bird.loc ?? "")
-//
-//
-//        Text(convertToDutchDate(dateString: bird.date ?? "1900-01-01", timeString: bird.time ?? "00:00") ?? "")
-//          .font(.caption)
-//      }
-//      .frame(maxWidth: .infinity)
-//      .padding()
-//    //        .border(Color.gray, width: 1)
-//      .background(
-//        RoundedRectangle(cornerRadius: 8)
-//          .stroke(Color.gray, lineWidth: 1)
-//      )
+    var modifiedURL: URL? {
+        guard let urlString = birdURL?.replacingOccurrences(of: "//", with: "https://www."),
+              let url = URL(string: urlString) else {
+            return nil
+        }
+        return url
+    }
 
-//      .accessibilityElement(children: .combine)
-//      .accessibilityLabel(combinedString)
+    var body: some View {
+        VStack {
+            if let url = modifiedURL {
+                Link("Xeno Canto URL", destination: url)
+            } else {
+                Text("Invalid URL")
+                    .foregroundColor(.red)
+            }
+        }
+    }
+}
 
-// Large Sono Image
-//      if let smallSono = bird.sono?.small, let sonoURL = URL(string: "https:" + smallSono) {
-//        KFImage(sonoURL)
-//          .resizable()
-//          .scaledToFit()
-//          .accessibilityHidden(true)
-//      }
-
-//      if let smallOsci = bird.osci?.small, let osciURL1 = URL(string: "https:" + smallOsci) {
-//        KFImage(osciURL1)
-//          .resizable()
-//          .scaledToFit()
-//          .accessibilityHidden(true)
-//      }
-
-//      if !(bird.rmk?.isEmpty ?? true) {
-//        Markdown(bird.rmk ?? "No remarks")
-////          .markdownTextStyle(\.code) {
-////            FontFamilyVariant(.monospaced)
-////            FontSize(.em(0.85))
-////            ForegroundColor(.purple)
-////            BackgroundColor(.purple.opacity(0.25))
-////          }
-//          .frame(maxWidth: .infinity)
-//          .padding()
-//        //        .border(Color.gray, width: 1)
-//          .background(
-//            RoundedRectangle(cornerRadius: 8)
-//              .stroke(Color.gray, lineWidth: 1)
-//          )
-//      }
-
-//      Spacer()
+func modifyURL(from birdURL: String?) -> URL? {
+    guard let urlString = birdURL?.replacingOccurrences(of: "//", with: "https://www."),
+          let url = URL(string: urlString) else {
+        return nil
+    }
+    return url
+}
