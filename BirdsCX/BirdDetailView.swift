@@ -13,17 +13,6 @@ struct BirdDetailView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       ShowView(title: "BirdDetailView")
-      //
-//      HStack {
-//      
-//      }
-
-      if isMP3(filename: bird.fileName ?? "no streaming format") {
-        PlayerControlsView(sounds: [bird.file ?? ""], length: bird.length ?? "01:00")
-      } else {
-        Text("audio is not streamable")
-      }
-
       //images
       VStack(alignment: .leading, spacing: 10) {
         if let smallSono = bird.sono?.small, let sonoURL = URL(string: "https:" + smallSono) {
@@ -42,7 +31,7 @@ struct BirdDetailView: View {
       }
       .frame(maxWidth: .infinity)
       .padding()
-      //        .border(Color.gray, width: 1)
+
       .background(
         RoundedRectangle(cornerRadius: 8)
           .stroke(Color.gray, lineWidth: 1)
