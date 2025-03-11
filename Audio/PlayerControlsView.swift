@@ -24,6 +24,8 @@ struct PlayerControlsView: View {
   let length: String
 
   var body: some View {
+    ShowView(title: "PlayerControlsView")
+
     if !(sounds.isEmpty) {
 
       VStack {
@@ -55,6 +57,7 @@ struct PlayerControlsView: View {
           .accessibilityLabel("position \(player.currentTime) of length \(length)")
 
         }
+        .accessibilityHidden(true)
 
         HStack {
           Spacer()
@@ -105,6 +108,7 @@ struct PlayerControlsView: View {
       }
       .onAppear {
         player.fill(sounds)
+        player.play()
       }
       .onDisappear {
         player.stop()
@@ -145,6 +149,8 @@ struct PlayerControlsView_Previews: PreviewProvider {
       .environmentObject(Player())
   }
 }
+
+
 
 //struct ContentView: View {
 //    @EnvironmentObject var player: Player

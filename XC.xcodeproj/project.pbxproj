@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4708FAC02D65EA620048F7E1 /* ShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708FABF2D65EA620048F7E1 /* ShowView.swift */; };
+		4708FAF12D679D3E0048F7E1 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 4708FAF02D679D3E0048F7E1 /* SFSafeSymbols */; };
 		471F7A902CF8540700BF529C /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 471F7A8F2CF853FF00BF529C /* todo.txt */; };
 		471F7A952CF85A9100BF529C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471F7A942CF85A9100BF529C /* SettingsView.swift */; };
 		471F7A9B2CF85F1300BF529C /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471F7A9A2CF85F0D00BF529C /* Misc.swift */; };
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4708FABF2D65EA620048F7E1 /* ShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowView.swift; sourceTree = "<group>"; };
 		471F7A8F2CF853FF00BF529C /* todo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		471F7A942CF85A9100BF529C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		471F7A9A2CF85F0D00BF529C /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
@@ -46,22 +49,9 @@
 		47A862482CF4A2E90016BB04 /* XCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		471F7A992CF85C6800BF529C /* Exceptions for "Managers" folder in "XC" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AccessibilityMamanager.swift,
-			);
-			target = 47911B412CF44F51006DEB07 /* XC */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		471F7A982CF85C5C00BF529C /* Managers */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				471F7A992CF85C6800BF529C /* Exceptions for "Managers" folder in "XC" target */,
-			);
 			path = Managers;
 			sourceTree = "<group>";
 		};
@@ -117,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4708FAF12D679D3E0048F7E1 /* SFSafeSymbols in Frameworks */,
 				47A862752CF5C11B0016BB04 /* SwiftAudioEx in Frameworks */,
 				47911B7F2CF45AA6006DEB07 /* Kingfisher in Frameworks */,
 				47911B722CF44FBD006DEB07 /* Alamofire in Frameworks */,
@@ -149,6 +140,7 @@
 				47A862482CF4A2E90016BB04 /* XCApp.swift */,
 				47A862472CF4A2E90016BB04 /* ContentView.swift */,
 				471F7A942CF85A9100BF529C /* SettingsView.swift */,
+				4708FABF2D65EA620048F7E1 /* ShowView.swift */,
 				471F7A982CF85C5C00BF529C /* Managers */,
 				471F7AC72CF98CB500BF529C /* Bookmark */,
 				47A8626F2CF5C0830016BB04 /* Audio */,
@@ -212,6 +204,7 @@
 				47911B7E2CF45AA6006DEB07 /* Kingfisher */,
 				47A862742CF5C11B0016BB04 /* SwiftAudioEx */,
 				47A862772CF5D2210016BB04 /* MarkdownUI */,
+				4708FAF02D679D3E0048F7E1 /* SFSafeSymbols */,
 			);
 			productName = XC;
 			productReference = 47911B422CF44F51006DEB07 /* XC.app */;
@@ -271,7 +264,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					47911B412CF44F51006DEB07 = {
 						CreatedOnToolsVersion = 16.1;
@@ -287,11 +280,12 @@
 				};
 			};
 			buildConfigurationList = 47911B3D2CF44F51006DEB07 /* Build configuration list for PBXProject "XC" */;
-			developmentRegion = en;
+			developmentRegion = nl;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				nl,
 			);
 			mainGroup = 47911B392CF44F51006DEB07;
 			minimizedProjectReferenceProxies = 1;
@@ -300,6 +294,7 @@
 				47911B7D2CF45A7F006DEB07 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				47A862732CF5C1000016BB04 /* XCRemoteSwiftPackageReference "SwiftAudioEx" */,
 				47A862762CF5D2130016BB04 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				4708FAEF2D679AB40048F7E1 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 47911B432CF44F51006DEB07 /* Products */;
@@ -345,6 +340,7 @@
 			files = (
 				471F7A952CF85A9100BF529C /* SettingsView.swift in Sources */,
 				471F7A9B2CF85F1300BF529C /* Misc.swift in Sources */,
+				4708FAC02D65EA620048F7E1 /* ShowView.swift in Sources */,
 				47A8624D2CF4A2E90016BB04 /* ContentView.swift in Sources */,
 				47A8624E2CF4A2E90016BB04 /* XCApp.swift in Sources */,
 			);
@@ -385,6 +381,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -448,6 +445,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -506,12 +504,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = XC;
+				INFOPLIST_KEY_CFBundleDisplayName = "Xeno Canto";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -543,12 +541,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XC/XC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"XC/Preview Content\"";
 				DEVELOPMENT_TEAM = 278BFDM8KA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = XC;
+				INFOPLIST_KEY_CFBundleDisplayName = "Xeno Canto";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -687,6 +685,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4708FAEF2D679AB40048F7E1 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
+			};
+		};
 		47911B6F2CF44F91006DEB07 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -722,6 +728,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4708FAF02D679D3E0048F7E1 /* SFSafeSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4708FAEF2D679AB40048F7E1 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			productName = SFSafeSymbols;
+		};
 		47911B712CF44FBD006DEB07 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 47911B6F2CF44F91006DEB07 /* XCRemoteSwiftPackageReference "Alamofire" */;

@@ -20,10 +20,12 @@ class BirdViewModel: ObservableObject {
   var hasFetchedBirds: Bool = false // New flag to track fetch status
 
 
-  func fetchBirds(name: String, clearCache: Bool = false) {
-    let checkedName = name.lowercased().replacingOccurrences(of: " ", with: "+")
-    let url = "https://xeno-canto.org/api/2/recordings?query=\(checkedName)"
-    let cacheKey = name
+  func fetchBirds(name: String, clearCache: Bool = false, onComplete: (() -> Void)? = nil) {
+    let checkedName = name.lowercased()
+    let url = "https://xeno-canto.org/api/2/recordings?query=gen:\(checkedName)&page=1"
+
+    print(url)
+    let cacheKey = name.lowercased()
     isLoading = true
     errorMessage = nil
 
@@ -44,6 +46,7 @@ class BirdViewModel: ObservableObject {
         self.totalSpecies = Int(birdResponse.numSpecies) ?? 0
       }
       self.hasFetchedBirds = true // Mark as fetched
+      
       return
     }
 
@@ -57,6 +60,8 @@ class BirdViewModel: ObservableObject {
           self.totalPages = birdResponse.numPages
           self.currentPage = birdResponse.page
           self.totalSpecies = Int(birdResponse.numSpecies) ?? 0
+
+          onComplete?() // Execute completion handler
 
           // Cache the response data
           if let dataToCache = try? JSONEncoder().encode(birdResponse) {
