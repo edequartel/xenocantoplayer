@@ -1,5 +1,5 @@
 //
-//  AccessibilityMamanager.swift
+//  AccessibilityManager.swift
 //  XC
 //
 //  Created by Eric de Quartel on 28/11/2024.

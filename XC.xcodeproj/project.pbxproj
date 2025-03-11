@@ -49,22 +49,9 @@
 		47A862482CF4A2E90016BB04 /* XCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		471F7A992CF85C6800BF529C /* Exceptions for "Managers" folder in "XC" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AccessibilityMamanager.swift,
-			);
-			target = 47911B412CF44F51006DEB07 /* XC */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		471F7A982CF85C5C00BF529C /* Managers */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				471F7A992CF85C6800BF529C /* Exceptions for "Managers" folder in "XC" target */,
-			);
 			path = Managers;
 			sourceTree = "<group>";
 		};

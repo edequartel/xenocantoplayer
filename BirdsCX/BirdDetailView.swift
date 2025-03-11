@@ -13,32 +13,76 @@ struct BirdDetailView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       ShowView(title: "BirdDetailView")
-      //images
-      VStack(alignment: .leading, spacing: 10) {
-        if let smallSono = bird.sono?.small, let sonoURL = URL(string: "https:" + smallSono) {
-          KFImage(sonoURL)
-            .resizable()
-            .scaledToFit()
-            .accessibilityHidden(true)
+      VStack {
+
+        HStack {
+          Text("\(bird.rec ?? "")")
+            .font(.caption)
+            .bold()
+          Spacer()
         }
 
-        if let smallOsci = bird.osci?.small, let osciURL1 = URL(string: "https:" + smallOsci) {
-          KFImage(osciURL1)
-            .resizable()
-            .scaledToFit()
-            .accessibilityHidden(true)
+        Text("")
+
+        HStack {
+          Text("\(bird.loc ?? "")")
+            .font(.caption)
+          Spacer()
+        }
+
+        Text("")
+
+        HStack {
+            if let licenseURL = bird.lic, let url = URL(string: "https:\(licenseURL)") {
+                Link(destination: url) {
+                  Text("License \(creativeCommonsLicenses[bird.lic ?? ""] ?? "Unknown License")") //make a link to creative commons
+                    .font(.caption)
+                }
+            } else {
+                Text("Unknown License")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            Spacer()
+        }
+
+        //images
+        VStack(alignment: .leading, spacing: 10) {
+
+          if let smallSono = bird.sono?.small, let sonoURL = URL(string: "https:" + smallSono) {
+            KFImage(sonoURL)
+              .resizable()
+              .scaledToFit()
+              .frame(maxWidth: .infinity)
+            //            .aspectRatio(contentMode: .fill)
+              .accessibilityHidden(true)
+
+          }
+
+          if let smallOsci = bird.osci?.small, let osciURL1 = URL(string: "https:" + smallOsci) {
+            KFImage(osciURL1)
+              .resizable()
+              .scaledToFit()
+              .frame(maxWidth: .infinity)
+            //            .aspectRatio(contentMode: .fill)
+              .accessibilityHidden(true)
+          }
+        }
+        .frame(maxWidth: .infinity)
+        .padding()
+
+        .background(
+          RoundedRectangle(cornerRadius: 8)
+            .stroke(Color.gray, lineWidth: 1)
+        )
+
+        //url
+        HStack {
+          OpenURLView(birdURL: bird.url)
+
+          Spacer()
         }
       }
-      .frame(maxWidth: .infinity)
-      .padding()
-
-      .background(
-        RoundedRectangle(cornerRadius: 8)
-          .stroke(Color.gray, lineWidth: 1)
-      )
-
-      //url
-      OpenURLView(birdURL: bird.url)
 
     }
     .padding()
@@ -123,9 +167,11 @@ struct OpenURLView: View {
         VStack {
             if let url = modifiedURL {
                 Link("Xeno Canto URL", destination: url)
+                .font(.caption)
             } else {
                 Text("Invalid URL")
-                    .foregroundColor(.red)
+                .font(.caption)
+                .foregroundColor(.red)
             }
         }
     }

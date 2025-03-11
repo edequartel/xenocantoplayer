@@ -49,17 +49,20 @@ struct BirdListView: View {
                 currentlyPlayingBirdID: $currentlyPlayingBirdID
               )
               .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                //if AccessibilityManager.isVoiceOverEnabled {
                 Button(action: {
                   selectedBird = bird
                 }) {
                   Label("Info", systemImage: "info.circle")
                 }
+                  //}
               }
             }
             .listStyle(PlainListStyle())
           }
         }
       }
+      Spacer()
     }
     .toolbar {
       ToolbarItem(placement: .navigationBarTrailing) {
@@ -73,7 +76,7 @@ struct BirdListView: View {
     }
     .sheet(item: $selectedBird) { bird in
       BirdDetailView(bird: bird, nativeName: nativeName)
-        .presentationDetents([.fraction(0.3)]) // Enables swipe-down to dismiss
+        .presentationDetents([.fraction(0.5)]) // Enables swipe-down to dismiss
         .presentationDragIndicator(.visible) // Shows a handle at the top
     }
     .onAppear {

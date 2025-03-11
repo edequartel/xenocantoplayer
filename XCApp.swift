@@ -12,7 +12,7 @@ struct XCApp: App {
   @StateObject var player = Player()
   @StateObject var bookMarksViewModel = BookMarksViewModel(fileName: "bookmarks.json")
   @StateObject var cacheMarksViewModel = BookMarksViewModel(fileName: "cachemarks.json")
-//  @StateObject private var accessibilityManager = AccessibilityManager()
+  @StateObject var accessibilityManager = AccessibilityManager()
 
 
     var body: some Scene {
@@ -21,6 +21,7 @@ struct XCApp: App {
             .environmentObject(player)
             .environmentObject(bookMarksViewModel)
             .environmentObject(cacheMarksViewModel)
+            .environmentObject(accessibilityManager)
         }
     }
 }
