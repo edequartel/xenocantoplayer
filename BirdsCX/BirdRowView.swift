@@ -89,6 +89,13 @@ struct BirdRowView: View {
             }
         }
         .accessibilityElement(children: .combine)
+        .onDisappear {
+          // Stop audio when leaving the BirdListView
+          if isPlayingThisBird {
+            print("--> stop audio")
+            audioPlayerManager.stopAudio()
+          }
+        }
     }
 }
 
@@ -128,121 +135,9 @@ class AudioPlayerManager: ObservableObject {
     }
 
     func stopAudio() {
-        print("stopAudio")
         player.stop()
     }
 }
-
-// MARK: - BirdRowView
-//struct BirdRowView: View {
-//  let bird: Bird
-//  @ObservedObject var audioPlayerManager: AudioPlayerManager
-////  @EnvironmentObject  var accessibilityManager: AccessibilityManager
-//  @Binding var currentlyPlayingBirdID: String?
-//
-//  var isPlayingThisBird: Bool {
-//    currentlyPlayingBirdID == bird.id && audioPlayerManager.isPlaying
-//  }
-//
-//  var body: some View {
-//    Button(action: {
-//      if isPlayingThisBird {
-//        audioPlayerManager.stopAudio()
-//        currentlyPlayingBirdID = nil
-//      } else {
-//        if currentlyPlayingBirdID != nil {
-//          audioPlayerManager.stopAudio()
-//        }
-//        currentlyPlayingBirdID = bird.id
-//        audioPlayerManager.playAudio(from: bird.file)
-//      }
-//    }) {
-//      VStack(alignment: .leading, spacing: 5) {
-//        HStack {
-//          VStack {
-//            HStack {
-//              Image(systemName: "\(bird.q?.lowercased() ?? "").square.fill")
-//                .font(.caption)
-//                .foregroundColor(.gray)
-//
-//
-//              Text("XC\(bird.id)")
-//                .font(.caption)
-//                .bold(true)
-//
-//              Text("\(bird.type ?? "")")
-//                .font(.caption)
-//              
-//              Spacer()
-//            }
-//            HStack {
-//              Text("\(bird.rec ?? "")")
-//                .font(.caption)
-//
-//              Text(creativeCommonsLicenses[bird.lic ?? ""] ?? "Unknown License")
-//                .font(.caption)
-//              Spacer()
-//            }
-//          }
-//          Spacer()
-//          if isPlayingThisBird {
-//            Image(systemName: "waveform")
-//              .font(.title)
-//              .foregroundColor(.gray)
-//          }
-//        }
-//      }
-//      .frame(maxWidth: .infinity, minHeight: 40) // Ensures full row is tappable
-//      .padding(.horizontal, 10)
-//      .padding(.vertical, 4)
-//      .contentShape(Rectangle()) // Ensures whole area is tappable
-//
-//    }
-//
-//    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-//      Button(action: {
-//        if let url = modifyURL(from: bird.url) {
-//          UIApplication.shared.open(url)
-//        } else {
-//          print("Invalid URL")
-//        }
-//      }) {
-//        Text("XC")
-//      }
-//    }
-//    .accessibilityElement(children: .combine)
-//  }
-//}
-
-
-// MARK: - AudioPlayerManager
-//class AudioPlayerManager: ObservableObject {
-//  let player = AudioPlayer()
-//  @Published var isPlaying: Bool = false
-//
-//  init() {
-//    player.event.stateChange.addListener(self) { [weak self] state in
-//      DispatchQueue.main.async {
-//        self?.isPlaying = state == .playing
-//      }
-//    }
-//  }
-//
-//  func playAudio(from urlString: String?) {
-//    print("playAudio \(String(describing: urlString))")
-//    guard let urlString = urlString, let url = URL(string: urlString) else {
-//      print("Invalid URL")
-//      return
-//    }
-//    let audioItem = DefaultAudioItem(audioUrl: url.absoluteString, sourceType: .stream)
-//    player.load(item: audioItem, playWhenReady: true)
-//  }
-//
-//  func stopAudio() {
-//    print("stopAudio")
-//    player.stop()
-//  }
-//}
 
 // MARK: - SoundTypePickerView
 struct SoundTypePickerView: View {

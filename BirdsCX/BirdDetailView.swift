@@ -37,6 +37,10 @@ struct BirdDetailView: View {
                 Link(destination: url) {
                   Text("License \(creativeCommonsLicenses[bird.lic ?? ""] ?? "Unknown License")") //make a link to creative commons
                     .font(.caption)
+                  Image("by")
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 50, height: 50)
                 }
             } else {
                 Text("Unknown License")
